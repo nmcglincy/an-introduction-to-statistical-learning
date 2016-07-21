@@ -1,0 +1,33 @@
+---
+title: Notes and exercises from "An Introduction to Statistical Leaning"" by James,
+  Witten, Hastie & Tibshirani
+author: "Nicholas McGlincy"
+date: "July 21st 2016"
+output:
+  html_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("~/Documents/computing/github/nmcglincy/an-introduction-to-statistical-learning/")
+library(ISLR)
+library(MASS)
+```
+
+# Chapter 1
+
+The introduction outlines three basic tasks in statistical learning:
+
+1. __Regression__ - predicting _continuous numerical_ values from other continuous values
+2. __Classification__ - predicting class membership; has a _categorical_ or _qualitative_ output.
+
+In both these tasks, we are trying to predict an output.
+
+3. __Clustering__ - here we are not trying to predict an output variable, but instead are trying to understand how similar/different a set of observations are, usually based on a number of variables.
+
+> It is clear that I need to revise matrix multiplication, I didn't really understand the example on p. 12.
+
+The book's website is [here](http://www-bcf.usc.edu/~gareth/ISL/).
