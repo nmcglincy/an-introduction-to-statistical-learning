@@ -17,7 +17,7 @@ library(ISLR)
 library(MASS)
 ```
 
-# Chapter 1
+# Chapter 1 Introduction
 
 The introduction outlines three basic tasks in statistical learning:
 
@@ -31,3 +31,18 @@ In both these tasks, we are trying to predict an output.
 > It is clear that I need to revise matrix multiplication, I didn't really understand the example on p. 12.
 
 The book's website is [here](http://www-bcf.usc.edu/~gareth/ISL/).
+
+# Chapter 2 Statistical Learning
+
+Broadly, the goal of statistical learning is to estimate $f$ in the equation:
+
+$Y = f(X) + \epsilon$
+
+Where:
+
+$Y$ is the _response/output/dependent variable_.  
+$X$ is one or more _input/independent variables_, or _predictors_ or _features_.  
+$f$ is a function that relates $X$ to $Y$, and  
+$\epsilon$ is a random error term, that is independent of $X$ and has mean zero.  
+  
+We estimate $f$ in order to predict $Y$
