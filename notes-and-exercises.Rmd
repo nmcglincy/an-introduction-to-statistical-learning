@@ -4,9 +4,11 @@ title: Notes and exercises from "An Introduction to Statistical Leaning"" by Jam
 author: "Nicholas McGlincy"
 date: "July 21st 2016"
 output:
+  pdf_document:
+    toc: yes
   html_document:
     toc: yes
-  pdf_document:
+  word_document:
     toc: yes
 ---
 
@@ -44,5 +46,46 @@ $Y$ is the _response/output/dependent variable_.
 $X$ is one or more _input/independent variables_, or _predictors_ or _features_.  
 $f$ is a function that relates $X$ to $Y$, and  
 $\epsilon$ is a random error term, that is independent of $X$ and has mean zero.  
+
+## We estimate $f$ for two ends:  
+
+### 1. __To predict $Y$__
+Here we are not primarily concerned with the exact nature of the function, rather how accurately it predicts $Y$. Thus our estimate of $Y$ comes from our estimate of $f$:
+
+$\hat{Y} = \hat{f}(X)$
+
+The accuracy of $Y$ depends on two quantities:  
+
+#### I. The reducible error
+$\hat{f}$ will be a more-a-less imperfect estimate of $f$. This inaccuracy is termed the _reducible error_ as it is reducible by determining a better $\hat{f}$. This reduction is the main point of statistical learning.
+
+#### II. The irreducible error
+Even if our estimate of $f$ was perfect, it would still have error in it, as $Y$ is also a function of $\epsilon$, which by definition cannot be predicted from $X$ - hence _irreducible error_. This error may come from unmeasured (or unmeasurable) variables that might be useful in predicting $Y$, but since we didn't measure them, they are not included in $f$. The irreducible error will always provide an upper bound on the accuracy of our prediction of $Y$.
+    
+### 2. To infer the relationship between $Y$ and $X_1,...,X_p$  
+In order to do this we need to know the exact form of $\hat{f}$. We can them aim to answer the following questions:
+    1. Which predictors are associated with the response?
+    2. What is the relationship between the response and each predictor?
+    3. Can the relationship between Y and each predictor be adequately summarised using a linear equation, or is the relationship more complicated?
+
+Some examples will combine both prediction and inference.
+
+## How do we estimate $f$?
+
+We estimate $f$ based on a subset of observations called the _training data_. We then use this function to predict the values of $Y$ for new values of $X$.
+
+There are two classes of methods for producing $\hat{f}$.
+
+### 1. Parametric Methods  
+Parametric methods involve a two-step model-base approach. First, we make an assumption about the form of $f$; for example, that is it linear:  
+
+$f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p$  
+
+Where $p$ is the number of variables $X$. The second step uses the the training data to _fit_ or _train_ the model. In this case, this means estimating the parameters $\beta_0, \beta_1,...,\beta_p$ (the coefficients), such that:  
+
+$Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p$  
+
+The most common method for doing this is called _(ordinary) least squares_, but there are many others. Parametric approaches are termed this because they reduce the problem of estimating $f$ to one of estimating a set of _parameters_.
   
-We estimate $f$ in order to predict $Y$
+### 2. Non-parametric Methods  
+  

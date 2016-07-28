@@ -117,7 +117,16 @@ $(document).ready(function () {
 <div id="TOC">
 <ul>
 <li><a href="#chapter-1-introduction">Chapter 1 Introduction</a></li>
-<li><a href="#chapter-2-statistical-learning">Chapter 2 Statistical Learning</a></li>
+<li><a href="#chapter-2-statistical-learning">Chapter 2 Statistical Learning</a><ul>
+<li><a href="#we-estimate-f-for-two-ends">We estimate <span class="math inline">\(f\)</span> for two ends:</a><ul>
+<li><a href="#to-predict-y">1. <strong>To predict <span class="math inline">\(Y\)</span></strong></a></li>
+<li><a href="#to-infer-the-relationship-between-y-and-x_1...x_p">2. To infer the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X_1,...,X_p\)</span></a></li>
+</ul></li>
+<li><a href="#how-do-we-estimate-f">How do we estimate <span class="math inline">\(f\)</span>?</a><ul>
+<li><a href="#parametric-methods">1. Parametric Methods</a></li>
+<li><a href="#non-parametric-methods">2. Non-parametric Methods</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
 
@@ -146,7 +155,44 @@ $(document).ready(function () {
 <span class="math inline">\(X\)</span> is one or more <em>input/independent variables</em>, or <em>predictors</em> or <em>features</em>.<br />
 <span class="math inline">\(f\)</span> is a function that relates <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>, and<br />
 <span class="math inline">\(\epsilon\)</span> is a random error term, that is independent of <span class="math inline">\(X\)</span> and has mean zero.</p>
-<p>We estimate <span class="math inline">\(f\)</span> in order to predict <span class="math inline">\(Y\)</span></p>
+<div id="we-estimate-f-for-two-ends" class="section level2">
+<h2>We estimate <span class="math inline">\(f\)</span> for two ends:</h2>
+<div id="to-predict-y" class="section level3">
+<h3>1. <strong>To predict <span class="math inline">\(Y\)</span></strong></h3>
+<p>Here we are not primarily concerned with the exact nature of the function, rather how accurately it predicts <span class="math inline">\(Y\)</span>. Thus our estimate of <span class="math inline">\(Y\)</span> comes from our estimate of <span class="math inline">\(f\)</span>:</p>
+<p><span class="math inline">\(\hat{Y} = \hat{f}(X)\)</span></p>
+<p>The accuracy of <span class="math inline">\(Y\)</span> depends on two quantities:</p>
+<div id="i.-the-reducible-error" class="section level4">
+<h4>I. The reducible error</h4>
+<p><span class="math inline">\(\hat{f}\)</span> will be a more-a-less imperfect estimate of <span class="math inline">\(f\)</span>. This inaccuracy is termed the <em>reducible error</em> as it is reducible by determining a better <span class="math inline">\(\hat{f}\)</span>. This reduction is the main point of statistical learning.</p>
+</div>
+<div id="ii.-the-irreducible-error" class="section level4">
+<h4>II. The irreducible error</h4>
+<p>Even if our estimate of <span class="math inline">\(f\)</span> was perfect, it would still have error in it, as <span class="math inline">\(Y\)</span> is also a function of <span class="math inline">\(\epsilon\)</span>, which by definition cannot be predicted from <span class="math inline">\(X\)</span> - hence <em>irreducible error</em>. This error may come from unmeasured (or unmeasurable) variables that might be useful in predicting <span class="math inline">\(Y\)</span>, but since we didn’t measure them, they are not included in <span class="math inline">\(f\)</span>. The irreducible error will always provide an upper bound on the accuracy of our prediction of <span class="math inline">\(Y\)</span>.</p>
+</div>
+</div>
+<div id="to-infer-the-relationship-between-y-and-x_1...x_p" class="section level3">
+<h3>2. To infer the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X_1,...,X_p\)</span></h3>
+<p>In order to do this we need to know the exact form of <span class="math inline">\(\hat{f}\)</span>. We can them aim to answer the following questions: 1. Which predictors are associated with the response? 2. What is the relationship between the response and each predictor? 3. Can the relationship between Y and each predictor be adequately summarised using a linear equation, or is the relationship more complicated?</p>
+<p>Some examples will combine both prediction and inference.</p>
+</div>
+</div>
+<div id="how-do-we-estimate-f" class="section level2">
+<h2>How do we estimate <span class="math inline">\(f\)</span>?</h2>
+<p>We estimate <span class="math inline">\(f\)</span> based on a subset of observations called the <em>training data</em>. We then use this function to predict the values of <span class="math inline">\(Y\)</span> for new values of <span class="math inline">\(X\)</span>.</p>
+<p>There are two classes of methods for producing <span class="math inline">\(\hat{f}\)</span>.</p>
+<div id="parametric-methods" class="section level3">
+<h3>1. Parametric Methods</h3>
+<p>Parametric methods involve a two-step model-base approach. First, we make an assumption about the form of <span class="math inline">\(f\)</span>; for example, that is it linear:</p>
+<p><span class="math inline">\(f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\)</span></p>
+<p>Where <span class="math inline">\(p\)</span> is the number of variables <span class="math inline">\(X\)</span>. The second step uses the the training data to <em>fit</em> or <em>train</em> the model. In this case, this means estimating the parameters <span class="math inline">\(\beta_0, \beta_1,...,\beta_p\)</span> (the coefficients), such that:</p>
+<p><span class="math inline">\(Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\)</span></p>
+<p>The most common method for doing this is called <em>(ordinary) least squares</em>, but there are many others. Parametric approaches are termed this because they reduce the problem of estimating <span class="math inline">\(f\)</span> to one of estimating a set of <em>parameters</em>.</p>
+</div>
+<div id="non-parametric-methods" class="section level3">
+<h3>2. Non-parametric Methods</h3>
+</div>
+</div>
 </div>
 
 
