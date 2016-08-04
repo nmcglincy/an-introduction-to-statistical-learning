@@ -123,10 +123,10 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
-<li><a href="#chapter-1-introduction">Chapter 1 Introduction</a></li>
-<li><a href="#chapter-2-statistical-learning">Chapter 2 Statistical Learning</a><ul>
+<li><a href="#chapter-1-introduction">Chapter 1: Introduction</a></li>
+<li><a href="#chapter-2-statistical-learning">Chapter 2: Statistical Learning</a><ul>
 <li><a href="#we-estimate-f-for-two-ends">We estimate <span class="math inline">\(f\)</span> for two ends:</a><ul>
-<li><a href="#to-predict-y">1. <strong>To predict <span class="math inline">\(Y\)</span></strong></a></li>
+<li><a href="#to-predict-y">1. To predict <span class="math inline">\(Y\)</span></a></li>
 <li><a href="#to-infer-the-relationship-between-y-and-x_1...x_p">2. To infer the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X_1,...,X_p\)</span></a></li>
 </ul></li>
 <li><a href="#how-do-we-estimate-f">How do we estimate <span class="math inline">\(f\)</span>?</a><ul>
@@ -134,13 +134,17 @@ $(document).ready(function () {
 <li><a href="#non-parametric-methods">2. Non-parametric Methods</a></li>
 </ul></li>
 <li><a href="#the-trade-off-between-prediction-accuracy-and-model-interpretability">The trade-off between prediction accuracy and model interpretability</a></li>
+<li><a href="#supervised-versus-unsupervised-learning">Supervised versus unsupervised learning</a></li>
+<li><a href="#assessing-model-accuracy">Assessing model accuracy</a><ul>
+<li><a href="#measuring-the-quality-of-fit">Measuring the quality of fit</a></li>
+</ul></li>
 <li><a href="#conceptual-exercises">Conceptual exercises</a></li>
 </ul></li>
 </ul>
 </div>
 
 <div id="chapter-1-introduction" class="section level1">
-<h1>Chapter 1 Introduction</h1>
+<h1>Chapter 1: Introduction</h1>
 <p>The introduction outlines three basic tasks in statistical learning:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Regression</strong> - predicting <em>continuous numerical</em> values from other continuous values</li>
@@ -156,9 +160,9 @@ $(document).ready(function () {
 <p>The book’s website is <a href="http://www-bcf.usc.edu/~gareth/ISL/">here</a>.</p>
 </div>
 <div id="chapter-2-statistical-learning" class="section level1">
-<h1>Chapter 2 Statistical Learning</h1>
+<h1>Chapter 2: Statistical Learning</h1>
 <p>Broadly, the goal of statistical learning is to estimate <span class="math inline">\(f\)</span> in the equation:</p>
-<p><span class="math inline">\(Y = f(X) + \epsilon\)</span></p>
+<p><span class="math display">\[Y = f(X) + \epsilon\]</span></p>
 <p>Where:</p>
 <p><span class="math inline">\(Y\)</span> is the <em>response/output/dependent variable</em>.<br />
 <span class="math inline">\(X\)</span> is one or more <em>input/independent variables</em>, or <em>predictors</em> or <em>features</em>.<br />
@@ -167,9 +171,9 @@ $(document).ready(function () {
 <div id="we-estimate-f-for-two-ends" class="section level2">
 <h2>We estimate <span class="math inline">\(f\)</span> for two ends:</h2>
 <div id="to-predict-y" class="section level3">
-<h3>1. <strong>To predict <span class="math inline">\(Y\)</span></strong></h3>
+<h3>1. To predict <span class="math inline">\(Y\)</span></h3>
 <p>Here we are not primarily concerned with the exact nature of the function, rather how accurately it predicts <span class="math inline">\(Y\)</span>. Thus our estimate of <span class="math inline">\(Y\)</span> comes from our estimate of <span class="math inline">\(f\)</span>:</p>
-<p><span class="math inline">\(\hat{Y} = \hat{f}(X)\)</span></p>
+<p><span class="math display">\[\hat{Y} = \hat{f}(X)\]</span></p>
 <p>The accuracy of <span class="math inline">\(Y\)</span> depends on two quantities:</p>
 <div id="i.-the-reducible-error" class="section level4">
 <h4>I. The reducible error</h4>
@@ -193,9 +197,9 @@ $(document).ready(function () {
 <div id="parametric-methods" class="section level3">
 <h3>1. Parametric Methods</h3>
 <p>Parametric methods involve a two-step model-base approach. First, we make an assumption about the form of <span class="math inline">\(f\)</span>; for example, that is it linear:</p>
-<p><span class="math inline">\(f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\)</span></p>
+<p><span class="math display">\[f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\]</span></p>
 <p>Where <span class="math inline">\(p\)</span> is the number of variables <span class="math inline">\(X\)</span>. The second step uses the the training data to <em>fit</em> or <em>train</em> the model. In this case, this means estimating the parameters <span class="math inline">\(\beta_0, \beta_1,...,\beta_p\)</span> (the coefficients), such that:</p>
-<p><span class="math inline">\(Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\)</span></p>
+<p><span class="math display">\[Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\]</span></p>
 <p>The most common method for doing this is called <em>(ordinary) least squares</em>, but there are many others. Parametric approaches are termed this because they reduce the problem of estimating <span class="math inline">\(f\)</span> to one of estimating a set of <em>parameters</em>. This makes things simplier, but has the potential disadvantage that the model we pick will usually not match the true form of <span class="math inline">\(f\)</span>. We can try to fit a more flexible model, but this requires the estimation of more parameters; also, there is the risk of the model following the errors in the training set too closely, which is termed <em>overfitting</em>.</p>
 </div>
 <div id="non-parametric-methods" class="section level3">
@@ -205,6 +209,22 @@ $(document).ready(function () {
 </div>
 <div id="the-trade-off-between-prediction-accuracy-and-model-interpretability" class="section level2">
 <h2>The trade-off between prediction accuracy and model interpretability</h2>
+<p>Model flexibility described the variety of possible shapes of <span class="math inline">\(f\)</span> that the method can estimate. More restrictive models are much more interpretable. Also, more flexible model, while they can initially seem more attractive, are much more prone to overfitting.</p>
+</div>
+<div id="supervised-versus-unsupervised-learning" class="section level2">
+<h2>Supervised versus unsupervised learning</h2>
+<p>The majority of what has been discussed to this point has pertained to supervised methods, where were have predictor and response varibles, and we are trying to model how the predictor pertain to the response - either to predict the response to future observations, or to understand/infer the relationship between the response and the predictors.</p>
+<p>Unsupervised learning describes situations where for each observation <span class="math inline">\(i = 1,...,n\)</span> there are a number of observed measurements <span class="math inline">\(x_i\)</span>, but no associated response <span class="math inline">\(y_i\)</span>. In this situation, we can seek to understand the relationships between the variables or between the observations. An example is <em>clustering analysis</em>; the goal of clustering analysis is to ascertain, on the basis of <span class="math inline">\(x_1,...,x_n\)</span>, whether the observations fall into relatively distinct groups.</p>
+<p>Semi-supervised learning methods exist – such as where collecting response data is more expensive than collecting predictor data – but they will not be discussed in the book.</p>
+</div>
+<div id="assessing-model-accuracy" class="section level2">
+<h2>Assessing model accuracy</h2>
+<p>No one method dominates all others for all possible datasets. Therefore we need methods to assess model accuracy, and be able make choices between different models.</p>
+<div id="measuring-the-quality-of-fit" class="section level3">
+<h3>Measuring the quality of fit</h3>
+<p>For a given observation, we need to quantify how close the predicted response was to the true response value for that observation. For regression, the most commonly used measure is the <em>mean squared error</em> (MSE), which is</p>
+<p><span class="math display">\[M S E = \frac{1}{n}\sum_{i = 1}^{n}(y_i - \hat{f}(x_i))^2\]</span></p>
+</div>
 </div>
 <div id="conceptual-exercises" class="section level2">
 <h2>Conceptual exercises</h2>

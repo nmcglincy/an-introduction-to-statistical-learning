@@ -4,11 +4,11 @@ title: Notes and exercises from "An Introduction to Statistical Leaning"" by Jam
 author: "Nicholas McGlincy"
 date: "July 21st 2016"
 output:
-  html_document:
+  word_document:
     toc: yes
   pdf_document:
     toc: yes
-  word_document:
+  html_document:
     toc: yes
 ---
 
@@ -19,7 +19,7 @@ library(ISLR)
 library(MASS)
 ```
 
-# Chapter 1 Introduction
+# Chapter 1: Introduction
 
 The introduction outlines three basic tasks in statistical learning:
 
@@ -34,11 +34,11 @@ In both these tasks, we are trying to predict an output.
 
 The book's website is [here](http://www-bcf.usc.edu/~gareth/ISL/).
 
-# Chapter 2 Statistical Learning
+# Chapter 2: Statistical Learning
 
 Broadly, the goal of statistical learning is to estimate $f$ in the equation:
 
-$Y = f(X) + \epsilon$
+\[Y = f(X) + \epsilon\]
 
 Where:
 
@@ -52,7 +52,7 @@ $\epsilon$ is a random error term, that is independent of $X$ and has mean zero.
 ### 1. To predict $Y$
 Here we are not primarily concerned with the exact nature of the function, rather how accurately it predicts $Y$. Thus our estimate of $Y$ comes from our estimate of $f$:
 
-$\hat{Y} = \hat{f}(X)$
+\[\hat{Y} = \hat{f}(X)\]
 
 The accuracy of $Y$ depends on two quantities:  
 
@@ -79,11 +79,11 @@ There are two classes of methods for producing $\hat{f}$.
 ### 1. Parametric Methods  
 Parametric methods involve a two-step model-base approach. First, we make an assumption about the form of $f$; for example, that is it linear:  
 
-$f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p$  
+\[f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\]
 
 Where $p$ is the number of variables $X$. The second step uses the the training data to _fit_ or _train_ the model. In this case, this means estimating the parameters $\beta_0, \beta_1,...,\beta_p$ (the coefficients), such that:  
 
-$Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p$  
+\[Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p\]
 
 The most common method for doing this is called _(ordinary) least squares_, but there are many others. Parametric approaches are termed this because they reduce the problem of estimating $f$ to one of estimating a set of _parameters_. This makes things simplier, but has the potential disadvantage that the model we pick will usually not match the true form of $f$. We can try to fit a more flexible model, but this requires the estimation of more parameters; also, there is the risk of the model following the errors in the training set too closely, which is termed _overfitting_.
   
@@ -93,7 +93,25 @@ These methods do not make explicit assumptions about the functional form of $f$,
 
 ## The trade-off between prediction accuracy and model interpretability
 
-Model flexibility described the variety of possible shapes of $f$ that the method can estimate. More restrictive models are much more interpretable
+Model flexibility described the variety of possible shapes of $f$ that the method can estimate. More restrictive models are much more interpretable. Also, more flexible model, while they can initially seem more attractive, are much more prone to overfitting.
+
+## Supervised versus unsupervised learning
+
+The majority of what has been discussed to this point has pertained to supervised methods, where were have predictor and response varibles, and we are trying to model how the predictor pertain to the response - either to predict the response to future observations, or to understand/infer the relationship between the response and the predictors.
+
+Unsupervised learning describes situations where for each observation $i = 1,...,n$ there are a number of observed measurements $x_i$, but no associated response $y_i$. In this situation, we can seek to understand the relationships between the variables or between the observations. An example is _clustering analysis_; the goal of clustering analysis is to ascertain, on the basis of $x_1,...,x_n$, whether the observations fall into relatively distinct groups.
+
+Semi-supervised learning methods exist -- such as where collecting response data is more expensive than collecting predictor data -- but they will not be discussed in the book.
+
+## Assessing model accuracy
+
+No one method dominates all others for all possible datasets. Therefore we need methods to assess model accuracy, and be able make choices between different models.
+
+### Measuring the quality of fit
+
+For a given observation, we need to quantify how close the predicted response was to the true response value for that observation. For regression, the most commonly used measure is the _mean squared error_ (MSE), which is 
+
+\[M S E = \frac{1}{n}\sum_{i = 1}^{n}(y_i - \hat{f}(x_i))^2\]
 
 ## Conceptual exercises
 
