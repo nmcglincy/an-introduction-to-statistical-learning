@@ -4,9 +4,9 @@ title: Notes and exercises from "An Introduction to Statistical Leaning"" by Jam
 author: "Nicholas McGlincy"
 date: "July 21st 2016"
 output:
-  pdf_document:
-    toc: yes
   html_document:
+    toc: yes
+  pdf_document:
     toc: yes
   word_document:
     toc: yes
@@ -49,7 +49,7 @@ $\epsilon$ is a random error term, that is independent of $X$ and has mean zero.
 
 ## We estimate $f$ for two ends:  
 
-### 1. __To predict $Y$__
+### 1. To predict $Y$
 Here we are not primarily concerned with the exact nature of the function, rather how accurately it predicts $Y$. Thus our estimate of $Y$ comes from our estimate of $f$:
 
 $\hat{Y} = \hat{f}(X)$
@@ -85,7 +85,23 @@ Where $p$ is the number of variables $X$. The second step uses the the training 
 
 $Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p$  
 
-The most common method for doing this is called _(ordinary) least squares_, but there are many others. Parametric approaches are termed this because they reduce the problem of estimating $f$ to one of estimating a set of _parameters_.
+The most common method for doing this is called _(ordinary) least squares_, but there are many others. Parametric approaches are termed this because they reduce the problem of estimating $f$ to one of estimating a set of _parameters_. This makes things simplier, but has the potential disadvantage that the model we pick will usually not match the true form of $f$. We can try to fit a more flexible model, but this requires the estimation of more parameters; also, there is the risk of the model following the errors in the training set too closely, which is termed _overfitting_.
   
 ### 2. Non-parametric Methods  
-  
+
+These methods do not make explicit assumptions about the functional form of $f$, instead they seek an estimate of $f$ that gets as close to the data points as possible without being too wiggly. By avoiding assumptions about the form of $f$ they have the potential for accurately fit a wider range of possible shapes of $f$. The disadvantage of non-parametric approaches is that they generally require a greater number of observations to obtain an accurate estimate of $f$.
+
+## The trade-off between prediction accuracy and model interpretability
+
+Model flexibility described the variety of possible shapes of $f$ that the method can estimate. More restrictive models are much more interpretable
+
+## Conceptual exercises
+
+1. For each of the parts (a) through (d), indicate whether we would gnerally expect the prformance of a flexible statistical learning method to be better or worse than an inflexible method. Justify your answer.
+
+    (a) The sample size _n_ is extremely large, and the number of predictors _p_ is small.
+    (b) The number of predictors _p_ is extremely large, and the number of observations _n_ is small.
+    (c) The relationship between the predictors and response is highly non-linear.
+    (d) The variance of the error terms, i.e. $\sigma^2 = Var(\epsilon)$, is extremely high.
+    
+2. 
