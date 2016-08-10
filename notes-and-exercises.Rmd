@@ -4,11 +4,11 @@ title: Notes and exercises from "An Introduction to Statistical Leaning"" by Jam
 author: "Nicholas McGlincy"
 date: "July 21st 2016"
 output:
-  word_document:
+  html_document:
     toc: yes
   pdf_document:
     toc: yes
-  html_document:
+  word_document:
     toc: yes
 ---
 
@@ -123,3 +123,32 @@ For a given observation, we need to quantify how close the predicted response wa
     (d) The variance of the error terms, i.e. $\sigma^2 = Var(\epsilon)$, is extremely high.
     
 2. 
+
+## Applied exercises
+
+### Excercise 8
+```{r excercise_8, fig.align='center'}
+head(College)
+
+summary(College)
+
+pairs(College[,1:10])
+
+with(College,
+     plot(Outstate ~ Private))
+
+Elite <- rep("No", nrow(College))
+Elite[College$Top10perc > 50]="Yes"
+Elite <- as.factor(Elite)
+College <- data.frame(College, Elite)
+head(College)
+summary(College$Elite)
+
+par(mfrow = c(1, 2))
+with(College,
+     plot(Outstate ~ Private))
+with(College,
+     plot(Outstate ~ Elite))
+
+
+```
