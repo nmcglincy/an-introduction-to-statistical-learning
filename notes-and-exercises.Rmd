@@ -150,5 +150,95 @@ with(College,
 with(College,
      plot(Outstate ~ Elite))
 
+par(mfrow = c(2,2))
+with(College,
+     hist(Apps))
+with(College,
+     hist(Accept))
+```
 
+### Exercise 9
+```{r exercise_9, fig.align='center'}
+head(Auto)
+str(Auto)
+# "origin" & "name" are qualitative, the other variables are quantitative
+# The range
+apply(Auto[,1:7],
+      2,
+      range,
+      na.rm = TRUE)
+# the mean and standard deviation
+# actually sort of meaningless for the year, which would probably be best
+# treated as a qualitative variable. Maybe cylinders as well...
+apply(Auto[,1:7],
+      2,
+      function(x){
+        foo <- numeric()
+        foo["mean"] <- round(mean(x, na.rm = TRUE), 2)
+        foo["sd"] <- round(sd(x, na.rm = TRUE), 2)
+        return(foo)
+      })
+mini.Auto <- Auto[-(10:85),]
+dim(Auto)
+dim(mini.Auto)
+# yes, this worked
+apply(mini.Auto[,1:6],
+      2,
+      function(x){
+        foo <- numeric()
+        foo["min"] <- range(x, na.rm = TRUE)[1]
+        foo["max"] <- range(x, na.rm = TRUE)[2]
+        foo["mean"] <- round(mean(x, na.rm = TRUE), 2)
+        foo["sd"] <- round(sd(x, na.rm = TRUE), 2)
+        return(foo)
+      })
+
+apply(Auto[,1:6],
+      2,
+      function(x){
+        foo <- numeric()
+        foo["min"] <- range(x, na.rm = TRUE)[1]
+        foo["max"] <- range(x, na.rm = TRUE)[2]
+        foo["mean"] <- round(mean(x, na.rm = TRUE), 2)
+        foo["sd"] <- round(sd(x, na.rm = TRUE), 2)
+        return(foo)
+      })
+
+pairs(Auto)
+
+# I think that mpg could be predicted from:
+#   no. cylinders
+#   displacement
+#   horsepower
+#   weight
+#   year
+#   maybe origin
+# All these variable seem to show some sort of relationship with mpg in the pairs plots
+# Accelaration might be useful if you can bin it into high and low
+```
+
+
+# Chapter 3: Linear regression
+
+## Lab: Linear regression
+```{r lin.reg.lab, fig.align='center'}
+names(Boston)
+lm.fit <- lm(medv ~ lstat, data = Boston)
+lm.fit
+summary(lm.fit)
+names(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+predict(lm.fit,
+        data.frame(lstat=(c(5, 10, 15))),
+        interval = "confidence")
+par(mfrow = c(1, 1))
+plot(medv ~ lstat, data = Boston)
+xlab("% households with low socioeconomic status")
+ylab("Median house value")
+abline(lm.fit,
+       col = "red")
+
+par(mfrow = c(2,2))
+plot(lm.fit)
 ```
