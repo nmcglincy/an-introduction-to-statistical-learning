@@ -241,4 +241,40 @@ abline(lm.fit,
 
 par(mfrow = c(2,2))
 plot(lm.fit)
+
+plot(predict(lm.fit), residuals(lm.fit))
+plot(predict(lm.fit), rstudent(lm.fit))
+plot(hatvalues(lm.fit))
+which.max(hatvalues(lm.fit))
+
+# Multiple regression
+lm.fit2 <- lm(medv ~ lstat + age, data = Boston)
+summary(lm.fit2)
+
+par(mfrow = c(2, 2))
+plot(medv ~ lstat, data = Boston)
+plot(medv ~ age, data = Boston)
+plot(lstat ~ age, data = Boston)
+
+par(mfrow = c(2, 2))
+plot(lm.fit2)
+# all variables
+lm.fit3 <- lm(medv ~ ., data = Boston)
+summary(lm.fit3)
+plot(lm.fit3)
+
+?summary.lm()
+summary(lm.fit3)$r.sq
+summary(lm.fit3)$sigma
+# variance inflation factors - a measure of multicolinearity
+install.packages("car")
+library(car)
+vif(lm.fit3)
+vif(lm.fit2)
+# interaction terms
+summary(lm(medv ~ lstat * age, data = Boston))
+# non-linear transformations of the predictors
+lm.fit4 <- lm(medv ~ lstat + I(lstat^2), data = Boston)
+summary(lm.fit4)
+
 ```
