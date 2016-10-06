@@ -281,5 +281,42 @@ anova(lm.fit, lm.fit4)
 par(mfrow = c(2,2))
 plot(lm.fit)
 plot(lm.fit4)
-
+par(mfrow = c(1,1))
+plot(medv ~ lstat, data = Boston)
+abline(lm.fit, col = "blue")
+lines(seq(from = 1, to = 100, by = 2),
+      predict(lm.fit4,
+              data.frame(lstat = seq(from = 1, to = 100, by = 2))),
+      col = "red")
+# polnomial fit
+lm.fit5 <- lm(medv~poly(lstat, 5), data = Boston)
+summary(lm.fit5)
+anova(lm.fit4, lm.fit5)
+par(mfrow = c(1,1))
+plot(medv ~ lstat, data = Boston)
+abline(lm.fit, col = "blue")
+lines(seq(from = 1, to = 100, by = 2),
+      predict(lm.fit4,
+              data.frame(lstat = seq(from = 1, to = 100, by = 2))),
+      col = "red")
+lines(seq(from = 1, to = 100, by = 2),
+      predict(lm.fit5,
+              data.frame(lstat = seq(from = 1, to = 100, by = 2))),
+      col = "purple")
+# Qualitative predictors
+names(Carseats)
+seats.fit1 <- lm(Sales ~ .+Income:Advertising + Price:Age, data = Carseats)
+summary(seats.fit1)
+contrasts(Carseats$ShelveLoc)
 ```
+
+## Exercises
+
+### Conceptual
+
+1. The p-values in Table 3.4 correspond to the null hypothesis that the given coefficient is not significantly different to zero - that is, that the predictor variables (the amount of money spent on advertising via TV, radio or newspaper, the spending on the other two being unchanged) has no effect on the response variable (the amount of sales). When concerning the intercept, this would be whether the value of the response variable is significantly different to zero when the predictor variables are zero - i.e. the amount of sales with no advertising.
+
+2. _Carefully explain the differences between the KNN classifier and KNN regression methods_
+
+3. 
+
