@@ -276,5 +276,10 @@ summary(lm(medv ~ lstat * age, data = Boston))
 # non-linear transformations of the predictors
 lm.fit4 <- lm(medv ~ lstat + I(lstat^2), data = Boston)
 summary(lm.fit4)
+# comparing models with anova()
+anova(lm.fit, lm.fit4)
+par(mfrow = c(2,2))
+plot(lm.fit)
+plot(lm.fit4)
 
 ```
